@@ -452,7 +452,7 @@ export default function Dashboard() {
             <div id="resume" className="dashboard-card">
               <div className="dashboard-card-header">
                 <h3>Resume Upload & Multi-Resume Hub</h3>
-                <span className="dashboard-card-subtext">Manage, parse, and swap between multiple resumes</span>
+{/*                 <span className="dashboard-card-subtext">Manage, parse, and swap between multiple resumes</span> */}
               </div>
               <ResumeUpload
                 onParsed={handleResumeParsed}
@@ -465,7 +465,7 @@ export default function Dashboard() {
             <div id="profile-info" className="dashboard-card">
               <div className="dashboard-card-header">
                 <h3>Profile Information</h3>
-                <span className="dashboard-card-subtext">Manage bio, key skills, and preferences</span>
+{/*                 <span className="dashboard-card-subtext">Manage bio, key skills, and preferences</span> */}
               </div>
 
               {/* 1. Summary Block */}
@@ -593,7 +593,7 @@ export default function Dashboard() {
             <div id="timeline" className="dashboard-card">
               <div className="dashboard-card-header">
                 <h3>Timeline (Experience & Education)</h3>
-                <span className="dashboard-card-subtext">Academic history and professional positions</span>
+{/*                 <span className="dashboard-card-subtext">Academic history and professional positions</span> */}
               </div>
 
               {/* 1. Employment History Block */}
@@ -698,7 +698,7 @@ export default function Dashboard() {
             <div id="projects" className="dashboard-card">
               <div className="dashboard-card-header">
                 <h3>Projects Showcase</h3>
-                <span className="dashboard-card-subtext">Demonstrated developer repositories & utilities</span>
+{/*                 <span className="dashboard-card-subtext">Demonstrated developer repositories & utilities</span> */}
                 <button type="button" className="btn-edit" onClick={() => toggleEdit('projects', true)}>
                   {editLinkEl}
                 </button>
@@ -753,7 +753,7 @@ export default function Dashboard() {
             <div id="public-link" className="dashboard-card">
               <div className="dashboard-card-header">
                 <h3>Recruiter URL & Themes</h3>
-                <span className="dashboard-card-subtext">Access your custom recruiter URL and themes</span>
+{/*                 <span className="dashboard-card-subtext">Access your custom recruiter URL and themes</span> */}
               </div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', background: '#f8fafc', padding: '1.5rem', borderRadius: '12px', border: '1px solid #cbd5e1', marginBottom: '2rem' }}>

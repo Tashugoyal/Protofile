@@ -2349,7 +2349,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .dashboard-card-subtext {
-  font-size: 0.85rem;
+  font-size: 0.70rem;
   color: #64748b;
   font-weight: 500;
 }
