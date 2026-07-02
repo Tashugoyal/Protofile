@@ -3,8 +3,8 @@ import { THEMES } from '../constants/defaultProfile';
 const THEME_OPTIONS = [
   {
     id: THEMES.CLASSIC,
-    name: 'Classic Professional',
-    description: 'Clean white layout with navy accents — ideal for corporate roles.',
+    name: 'Classical Professional',
+    description: 'Dark handcrafted portfolio with animated hero text, portrait panel, and refined micro-interactions.',
     preview: 'classic',
   },
   {
