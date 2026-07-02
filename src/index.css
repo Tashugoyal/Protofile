@@ -1577,18 +1577,6 @@ select:focus {
   }
 }
 
-@keyframes classicProTypeLoop {
-  0%, 6% {
-    clip-path: inset(0 100% 0 0);
-  }
-  34%, 82% {
-    clip-path: inset(0 0 0 0);
-  }
-  100% {
-    clip-path: inset(0 100% 0 0);
-  }
-}
-
 @keyframes classicProLineGrow {
   from {
     transform: scaleX(0);
@@ -2390,9 +2378,8 @@ select:focus {
 }
 
 .classic-pro-title-line {
-  animation:
-    classicProTypeLoop 8s steps(var(--chars)) calc(var(--delay)) infinite both,
-    classicProTitleGlow 4s ease-in-out calc(var(--delay) + 1.15s) infinite;
+  animation: none;
+  clip-path: none;
   color: var(--classic-ink);
   max-width: 100%;
   overflow: hidden;
@@ -2406,9 +2393,7 @@ select:focus {
 }
 
 .classic-pro-title-line::after {
-  animation: classicProCursor 0.8s steps(1) calc(var(--delay)) infinite;
-  background: var(--classic-green);
-  right: 0;
+  display: none;
 }
 
 .classic-pro-summary {

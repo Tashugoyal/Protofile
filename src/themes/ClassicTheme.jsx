@@ -98,14 +98,11 @@ export default function ClassicTheme({ profile }) {
         <div className="classic-pro-hero-copy">
           <p className="classic-pro-kicker">Personal website and digital presence</p>
           <h1 aria-label={`Meet my ${role}`}>
-            <span className="classic-pro-title-line" style={{ '--chars': 7, '--delay': '0ms' }}>
-              Meet my
-            </span>
+            <span className="classic-pro-title-line">Meet my</span>
             {roleLines.map((line, index) => (
               <span
                 className="classic-pro-title-line is-accent"
                 key={`${line}-${index}`}
-                style={{ '--chars': line.length, '--delay': `${180 + index * 150}ms` }}
               >
                 {line}
               </span>
