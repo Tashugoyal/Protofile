@@ -2297,20 +2297,17 @@ select:focus {
   --classic-green: #6f7f73;
   --classic-line: rgba(44, 51, 47, 0.16);
   --classic-soft: rgba(44, 51, 47, 0.055);
-  background:
-    linear-gradient(90deg, rgba(44, 51, 47, 0.04) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(44, 51, 47, 0.04) 1px, transparent 1px),
-    radial-gradient(circle at 82% 12%, rgba(242, 200, 75, 0.32), transparent 24%),
-    linear-gradient(135deg, #fff7e8, var(--classic-cream));
-  background-size: 34px 34px, 34px 34px, auto, auto;
-  border: 1px solid #eadfc9;
-  box-shadow: 0 28px 58px rgba(44, 51, 47, 0.12);
+  background: #f7f0e2;
+  border: 1px solid rgba(234, 223, 201, 0.9);
+  box-shadow:
+    0 30px 70px rgba(44, 51, 47, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
   color: var(--classic-ink);
   min-height: 760px;
 }
 
 .classic-pro-theme.blog-theme--classic::before {
-  border-color: rgba(44, 51, 47, 0.08);
+  border-color: rgba(44, 51, 47, 0.09);
   inset: 1rem;
 }
 
@@ -2338,6 +2335,7 @@ select:focus {
 .classic-pro-mark {
   background: var(--classic-yellow);
   border: 1px solid rgba(44, 51, 47, 0.12);
+  box-shadow: 0 10px 22px rgba(242, 200, 75, 0.28);
   color: var(--classic-ink);
   font-size: 0.72rem;
   font-weight: 950;
@@ -2418,6 +2416,7 @@ select:focus {
   background: var(--classic-yellow);
   border: 1px solid rgba(44, 51, 47, 0.12);
   border-radius: 999px;
+  box-shadow: 0 12px 24px rgba(242, 200, 75, 0.22);
   color: var(--classic-ink);
   display: inline-flex;
   font-size: 0.74rem;
@@ -2428,7 +2427,9 @@ select:focus {
 }
 
 .classic-pro-actions a:last-child {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .classic-pro-actions a:hover {
@@ -2442,14 +2443,13 @@ select:focus {
 
 .classic-pro-portrait-card {
   aspect-ratio: auto;
-  background:
-    radial-gradient(circle at 80% 15%, rgba(242, 200, 75, 0.46), transparent 28%),
-    linear-gradient(145deg, #fff8e7, #e7decc);
-  border: 1px solid rgba(44, 51, 47, 0.1);
+  background: #efe4cf;
+  border: 1px solid rgba(255, 255, 255, 0.64);
   border-radius: 28px;
   box-shadow:
-    0 26px 50px rgba(44, 51, 47, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    0 30px 60px rgba(44, 51, 47, 0.17),
+    0 12px 32px rgba(145, 182, 200, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
   display: grid;
   min-height: 345px;
   padding: 1rem;
@@ -2457,9 +2457,12 @@ select:focus {
 }
 
 .classic-pro-portfolio-card {
-  background: rgba(255, 250, 240, 0.78);
-  border: 1px solid rgba(44, 51, 47, 0.1);
+  background: rgba(255, 250, 240, 0.86);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.68);
   border-radius: 22px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
   display: grid;
   grid-template-rows: auto 1fr;
   overflow: hidden;
@@ -2477,6 +2480,7 @@ select:focus {
   align-items: center;
   background: var(--classic-yellow);
   border: 1px solid rgba(44, 51, 47, 0.12);
+  box-shadow: 0 10px 22px rgba(242, 200, 75, 0.24);
   border-radius: 50%;
   color: var(--classic-ink);
   display: inline-flex;
@@ -2538,9 +2542,7 @@ select:focus {
 }
 
 .classic-pro-phone.is-main::before {
-  background:
-    radial-gradient(circle at 50% 34%, #ffffff 0 18%, transparent 19%),
-    linear-gradient(135deg, var(--classic-yellow), #8ca78f);
+  background: #d7c177;
   content: "";
   height: 92px;
   left: 0;
@@ -2595,8 +2597,10 @@ select:focus {
 .classic-pro-contact-card {
   animation: classicProReveal 0.64s ease 620ms both;
   align-self: end;
-  background: rgba(255, 255, 255, 0.76);
-  border: 1px solid rgba(44, 51, 47, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 16px;
   box-shadow: 0 14px 28px rgba(44, 51, 47, 0.1);
   display: grid;
@@ -2614,8 +2618,9 @@ select:focus {
 
 .classic-pro-portrait-card:hover {
   box-shadow:
-    0 32px 64px rgba(44, 51, 47, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+    0 36px 72px rgba(44, 51, 47, 0.22),
+    0 16px 36px rgba(145, 182, 200, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.84);
   transform: translateY(-5px) rotate(0.35deg);
 }
 
@@ -2703,9 +2708,11 @@ select:focus {
 
 .classic-pro-work article {
   background: #fffaf0;
-  border: 1px solid #eadfc9;
+  border: 1px solid rgba(234, 223, 201, 0.9);
   border-radius: 8px;
-  box-shadow: 0 16px 28px rgba(44, 51, 47, 0.1);
+  box-shadow:
+    0 18px 32px rgba(44, 51, 47, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
   padding: 0.62rem;
 }
 
@@ -2716,9 +2723,7 @@ select:focus {
 }
 
 .classic-pro-card-media {
-  background:
-    linear-gradient(135deg, rgba(242, 200, 75, 0.9), rgba(111, 127, 115, 0.72)),
-    linear-gradient(90deg, transparent 0 52%, rgba(255,255,255,0.55) 52%);
+  background: #d6c178;
   border-radius: 5px;
   height: 76px;
   margin-bottom: 0.58rem;
