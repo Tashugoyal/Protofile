@@ -1577,6 +1577,18 @@ select:focus {
   }
 }
 
+@keyframes classicProTypeLoop {
+  0%, 6% {
+    clip-path: inset(0 100% 0 0);
+  }
+  34%, 82% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
 @keyframes classicProLineGrow {
   from {
     transform: scaleX(0);
@@ -2350,9 +2362,17 @@ select:focus {
 }
 
 .classic-pro-hero {
-  gap: 2rem;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 315px);
+  gap: 1.35rem;
+  grid-template-columns: minmax(0, 0.86fr) minmax(250px, 300px);
   margin-bottom: 1.4rem;
+}
+
+.classic-pro-hero-copy {
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 .classic-pro-kicker {
@@ -2363,13 +2383,21 @@ select:focus {
 
 .classic-pro-hero h1 {
   color: var(--classic-ink);
-  font-size: 4.2rem;
-  line-height: 0.92;
-  max-width: 510px;
+  font-size: 3.75rem;
+  line-height: 0.91;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .classic-pro-title-line {
+  animation:
+    classicProTypeLoop 8s steps(var(--chars)) calc(var(--delay)) infinite both,
+    classicProTitleGlow 4s ease-in-out calc(var(--delay) + 1.15s) infinite;
   color: var(--classic-ink);
+  max-width: 100%;
+  overflow: hidden;
+  padding-right: 0.08em;
+  text-overflow: clip;
 }
 
 .classic-pro-title-line.is-accent {
@@ -2378,7 +2406,9 @@ select:focus {
 }
 
 .classic-pro-title-line::after {
+  animation: classicProCursor 0.8s steps(1) calc(var(--delay)) infinite;
   background: var(--classic-green);
+  right: 0;
 }
 
 .classic-pro-summary {
@@ -2760,7 +2790,7 @@ select:focus {
   }
 
   .classic-pro-hero h1 {
-    font-size: 2.65rem;
+    font-size: 2.45rem;
   }
 
   .classic-pro-summary {

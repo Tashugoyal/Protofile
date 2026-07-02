@@ -18,16 +18,20 @@ function getDisplayLink(link = '') {
 function splitRole(role = '') {
   const words = (role || 'Digital Portfolio').split(/\s+/).filter(Boolean);
 
-  if (words.length <= 1) {
-    return [words.join(' ')];
+  if (!words.length) {
+    return ['Digital', 'Portfolio'];
   }
 
-  if (words.length === 2) {
-    return words;
-  }
+  return words.reduce((lines, word) => {
+    const currentLine = lines[lines.length - 1] || '';
+    const nextLine = currentLine ? `${currentLine} ${word}` : word;
 
-  const midpoint = Math.ceil(words.length / 2);
-  return [words.slice(0, midpoint).join(' '), words.slice(midpoint).join(' ')];
+    if (!currentLine || nextLine.length <= 12) {
+      return [...lines.slice(0, -1), nextLine];
+    }
+
+    return [...lines, word];
+  }, []);
 }
 
 export default function ClassicTheme({ profile }) {
