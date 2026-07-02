@@ -3,8 +3,8 @@ import { THEMES } from '../constants/defaultProfile';
 const THEME_OPTIONS = [
   {
     id: THEMES.CLASSIC,
-    name: 'Classical Professional',
-    description: 'Dark handcrafted portfolio with animated hero text, portrait panel, and refined micro-interactions.',
+    name: 'Canva Style Portfolio',
+    description: 'Warm creative portfolio with animated text, profile cards, resume-mapped highlights, and polished micro-interactions.',
     preview: 'classic',
   },
   {

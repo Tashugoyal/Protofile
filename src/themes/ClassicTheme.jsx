@@ -11,9 +11,20 @@ function getInitials(name = '') {
   );
 }
 
-function splitHeadline(headline = '') {
-  const words = (headline || 'Full Stack Developer').split(/\s+/).filter(Boolean);
-  if (words.length <= 2) return [words.join(' ')];
+function getDisplayLink(link = '') {
+  return link.replace(/^https?:\/\//i, '').replace(/^www\./i, '').replace(/\/$/, '');
+}
+
+function splitRole(role = '') {
+  const words = (role || 'Digital Portfolio').split(/\s+/).filter(Boolean);
+
+  if (words.length <= 1) {
+    return [words.join(' ')];
+  }
+
+  if (words.length === 2) {
+    return words;
+  }
 
   const midpoint = Math.ceil(words.length / 2);
   return [words.slice(0, midpoint).join(' '), words.slice(midpoint).join(' ')];
@@ -23,22 +34,37 @@ export default function ClassicTheme({ profile }) {
   const {
     fullName,
     headline,
+    location,
     email,
+    phone,
     linkedinUrl,
     summary,
     skills = [],
     experience = [],
+    education = [],
     projects = [],
   } = profile;
 
-  const name = fullName || 'Emad Almagdy';
+  const name = fullName || 'Creative Portfolio';
   const [firstName, ...restName] = name.split(/\s+/);
-  const brandTail = restName.join('') || 'Portfolio';
-  const headlineLines = splitHeadline(headline);
-  const featuredSkills = (skills.length ? skills : ['Front-End', 'Python', 'Machine Learning']).slice(0, 3);
-  const workItems = (projects.length ? projects : experience).slice(0, 2);
-  const contactHref = email ? `mailto:${email}` : linkedinUrl ? formatExternalUrl(linkedinUrl) : '#classic-about';
-  const profileHref = linkedinUrl ? formatExternalUrl(linkedinUrl) : contactHref;
+  const brandTail = restName.join(' ') || 'Studio';
+  const role = headline || 'Digital Portfolio';
+  const roleLines = splitRole(role);
+  const contactHref = email ? `mailto:${email}` : linkedinUrl ? formatExternalUrl(linkedinUrl) : '#classic-work';
+  const primaryLink = linkedinUrl ? formatExternalUrl(linkedinUrl) : contactHref;
+  const featuredSkills = (skills.length ? skills : ['Brand Strategy', 'Web Design', 'Content Systems']).slice(0, 3);
+  const showcaseItems = [
+    ...(projects.length ? projects : []),
+    ...(experience.length ? experience : []),
+    ...(education.length ? education : []),
+    { title: 'Portfolio Storyline', description: 'A polished profile narrative generated from mapped resume data.' },
+  ].slice(0, 3);
+
+  const stats = [
+    { label: 'Experience', value: experience.length ? `${experience.length}+` : '01' },
+    { label: 'Skills', value: skills.length ? `${skills.length}+` : '03' },
+    { label: 'Projects', value: projects.length ? `${projects.length}+` : '01' },
+  ];
 
   return (
     <article className="blog-theme blog-theme--classic classic-pro-theme">
@@ -50,93 +76,125 @@ export default function ClassicTheme({ profile }) {
         <div className="classic-pro-nav-links">
           <a href="#classic-home">Home</a>
           <a href="#classic-about">About</a>
-          <a href="#classic-work">Work</a>
+          <a href="#classic-work">Portfolio</a>
+          <a href={contactHref}>Contact</a>
         </div>
         <a
-          href={profileHref}
+          href={primaryLink}
           className="classic-pro-mark"
-          target={profileHref.startsWith('http') ? '_blank' : undefined}
-          rel={profileHref.startsWith('http') ? 'noreferrer' : undefined}
+          target={primaryLink.startsWith('http') ? '_blank' : undefined}
+          rel={primaryLink.startsWith('http') ? 'noreferrer' : undefined}
           aria-label="Open professional profile"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z" />
-          </svg>
+          {getInitials(name)}
         </a>
       </nav>
 
       <section className="classic-pro-hero" id="classic-home">
         <div className="classic-pro-hero-copy">
-          <p className="classic-pro-kicker">Hello, I'm {firstName},</p>
-          <h1 aria-label={headline || 'Full Stack Developer'}>
-            {headlineLines.map((line, index) => (
-              <span key={line} className="classic-pro-title-line" style={{ '--delay': `${index * 120}ms` }}>
+          <p className="classic-pro-kicker">Personal website and digital presence</p>
+          <h1 aria-label={`Meet my ${role}`}>
+            <span className="classic-pro-title-line" style={{ '--chars': 7, '--delay': '0ms' }}>
+              Meet my
+            </span>
+            {roleLines.map((line, index) => (
+              <span
+                className="classic-pro-title-line is-accent"
+                key={`${line}-${index}`}
+                style={{ '--chars': line.length, '--delay': `${180 + index * 150}ms` }}
+              >
                 {line}
               </span>
             ))}
           </h1>
-          <a
-            href={contactHref}
-            className="classic-pro-contact"
-            target={contactHref.startsWith('http') ? '_blank' : undefined}
-            rel={contactHref.startsWith('http') ? 'noreferrer' : undefined}
-          >
-            Contact Me
-          </a>
-        </div>
-
-        <div className="classic-pro-portrait-card" aria-label={`${name} portrait illustration`}>
-          <div className="classic-pro-portrait-orbit"></div>
-          <div className="classic-pro-portrait-figure">
-            <span className="classic-pro-initials">{getInitials(name)}</span>
-            <span className="classic-pro-hair"></span>
-            <span className="classic-pro-face">
-              <span className="classic-pro-eye classic-pro-eye-left"></span>
-              <span className="classic-pro-eye classic-pro-eye-right"></span>
-              <span className="classic-pro-nose"></span>
-              <span className="classic-pro-mouth"></span>
-            </span>
-            <span className="classic-pro-suit"></span>
+          <p className="classic-pro-summary">
+            {summary ||
+              'A polished portfolio landing page that turns resume data into a visual story, featured work, and recruiter-ready proof of capability.'}
+          </p>
+          <div className="classic-pro-actions">
+            <a href="#classic-work">Featured Work</a>
+            <a
+              href={contactHref}
+              target={contactHref.startsWith('http') ? '_blank' : undefined}
+              rel={contactHref.startsWith('http') ? 'noreferrer' : undefined}
+            >
+              Book Call
+            </a>
           </div>
         </div>
+
+        <aside className="classic-pro-portrait-card" aria-label={`${name} portfolio preview`}>
+          <div className="classic-pro-portfolio-card">
+            <div className="classic-pro-profile-strip">
+              <span className="classic-pro-initials">{getInitials(name)}</span>
+              <div>
+                <strong>{name}</strong>
+                <small>{location || 'Open to opportunities'}</small>
+              </div>
+            </div>
+            <div className="classic-pro-phone-stack">
+              <div className="classic-pro-phone is-main">
+                <span></span>
+                <strong>{firstName}</strong>
+                <small>{featuredSkills[0]}</small>
+              </div>
+              <div className="classic-pro-phone is-secondary">
+                {featuredSkills.map((skill) => (
+                  <span key={skill}>{skill}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="classic-pro-contact-card">
+            {email && <span>{email}</span>}
+            {phone && <span>{phone}</span>}
+            {linkedinUrl && <span>{getDisplayLink(linkedinUrl)}</span>}
+          </div>
+        </aside>
       </section>
 
       <section className="classic-pro-about" id="classic-about">
         <div className="classic-pro-section-title">
-          <h2>about</h2>
+          <h2>Portfolio snapshot</h2>
           <span></span>
         </div>
         <p>
           {summary ||
-            'I build polished digital products with clean interfaces, thoughtful interactions, and practical engineering decisions.'}
+            'Resume information is mapped directly into this portfolio: headline, summary, skills, work history, education, projects, and contact details.'}
         </p>
       </section>
 
-      <section className="classic-pro-skill-row" aria-label="Highlighted capabilities">
-        {featuredSkills.map((skill, index) => (
-          <article key={skill} style={{ '--delay': `${index * 90}ms` }}>
-            <h3>{skill}</h3>
-            <p>{index === 0 ? '500+ Hours Experience' : index === 1 ? '4 Years Experience' : '120+ Hours Experience'}</p>
+      <section className="classic-pro-skill-row" aria-label="Profile metrics">
+        {stats.map((stat, index) => (
+          <article key={stat.label} style={{ '--delay': `${index * 90}ms` }}>
+            <h3>{stat.value}</h3>
+            <p>{stat.label}</p>
           </article>
         ))}
       </section>
 
-      {workItems.length > 0 && (
-        <section className="classic-pro-work" id="classic-work">
-          {workItems.map((item, index) => (
-            <article key={`${item.title || item.company}-${index}`} style={{ '--delay': `${index * 110}ms` }}>
+      <section className="classic-pro-work" id="classic-work">
+        {showcaseItems.map((item, index) => (
+          <article key={`${item.title || item.company || item.school}-${index}`} style={{ '--delay': `${index * 110}ms` }}>
+            <div className="classic-pro-card-media">
               <span>0{index + 1}</span>
-              <h3>{item.title || item.company || 'Featured Work'}</h3>
-              <p>{item.description || item.company || 'Selected professional highlight from the mapped resume profile.'}</p>
-              {item.link && (
-                <a href={formatExternalUrl(item.link)} target="_blank" rel="noreferrer">
-                  View work
-                </a>
-              )}
-            </article>
-          ))}
-        </section>
-      )}
+            </div>
+            <h3>{item.title || item.company || item.school || 'Portfolio Highlight'}</h3>
+            <p>
+              {item.description ||
+                item.degree ||
+                item.field ||
+                item.company ||
+                'Selected work, experience, and presentation details from the uploaded resume.'}
+            </p>
+            {item.link && (
+              <a href={formatExternalUrl(item.link)} target="_blank" rel="noreferrer">
+                View work
+              </a>
+            )}
+          </article>
+        ))}
+      </section>
     </article>
   );
 }
